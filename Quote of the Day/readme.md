@@ -38,7 +38,7 @@
 
 ## Setup & Installation
 - **Clone the Repository:**
-  - Execute: `git clone <repository-url>` to clone the project locally.
+  - Execute: `git clone <https://github.com/sahil-ladhania/Practice-Projects/tree/main/Quote%20of%20the%20Day>` to clone the project locally.
 - **Run the Application:**
   - Open `index.html` in your web browser.
   - Ensure your browser supports modern JavaScript features and LocalStorage for full functionality.
