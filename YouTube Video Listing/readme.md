@@ -36,7 +36,7 @@
 
 ## Setup & Installation
 - **Clone the Repository:**
-  - Run `git clone <repository-url>` to clone the project locally.
+  - Run `git clone <https://github.com/sahil-ladhania/Practice-Projects/tree/main/YouTube%20Video%20Listing>` to clone the project locally.
 - **Run the Application:**
   - Open `index.html` in your preferred web browser.
   - Make sure your browser supports modern JavaScript features for full functionality.
