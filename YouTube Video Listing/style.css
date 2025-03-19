@@ -72,6 +72,7 @@
     overflow: hidden;
     text-decoration: none;
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
   }
   
   .video-card:hover {
@@ -107,4 +108,22 @@
     border-top: 1px solid #444;
     font-size: 0.9rem;
     color: #aaa;
+  }
+
+  .video-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  
+  .video-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .video-stats i {
+    color: #ffcc00;
   }

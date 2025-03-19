@@ -12,7 +12,7 @@
   
 - **Clickable Video Cards:**
   - Each video card is clickable.
-  - Clicking a card opens the corresponding video on YouTube in a new tab.
+  - Clicking a card opens the corresponding video on YouTube in a `new tab`.
   
 - **Search Functionality:**
   - A search bar filters the displayed videos based on user input.
@@ -20,6 +20,12 @@
   
 - **Responsive Design:**
   - A responsive grid layout ensures that the application looks great on both mobile and desktop devices.
+
+## Screenshots
+### 📌 Homepage View
+![MyTube Homepage](assets/SS-1.png)
+
+![MyTube Homepage](assets/SS-2.png)
 
 ## API Endpoint
 - **GET Request:** `https://api.freeapi.app/api/v1/public/youtube/videos`
