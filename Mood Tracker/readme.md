@@ -29,13 +29,13 @@
 
 ## Setup & Installation
 - **Clone the Repository:**
-  - Use `git clone <repository-url>` to get started.
+  - Use `git clone <https://github.com/sahil-ladhania/Practice-Projects/tree/main/Mood%20Tracker>` to get started.
 - **Run the Application:**
   - Open `index.html` in your preferred browser.
   - Ensure your browser supports LocalStorage.
 
 ## Deployment
 - **Hosting Platforms:**
-  - Used Netlify as Hosting Platform.
+  - Used Vercel as Hosting Platform.
 - **Live Link of the Product:**
   [Try it now !](www.google.com)
