@@ -51,4 +51,4 @@
 - **Hosting Platforms:**
   - Used Vercel as Hosting Platform.
 - **Live Link of the Product:**
-  [Try it now !](www.google.com)
+  [Try it now !](https://mytube-blue.vercel.app/)
