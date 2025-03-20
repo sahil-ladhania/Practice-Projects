@@ -22,6 +22,10 @@
   - **Random Background Image:** Randomly sets a background image behind the quote.
   - **Export Quote:** Enables users to export the quote (as an image) to their computer.
 
+## Screenshots
+### 📌 Homepage View
+![Alt Text](./assets/SS-1.png)
+
 ## API Endpoint & Documentation
 - **API Endpoint:**  
   `https://api.freeapi.app/api/v1/public/quotes/quote/random`
