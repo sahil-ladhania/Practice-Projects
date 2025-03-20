@@ -61,6 +61,11 @@ html, body {
   color: #444;
 }
 
+.list-item{
+  list-style: none;
+  padding: 4px;
+}
+
 .mood-buttons {
   display: flex;
   justify-content: space-around;
