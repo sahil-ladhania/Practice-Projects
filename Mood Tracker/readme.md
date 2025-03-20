@@ -15,6 +15,10 @@
 - **Responsiveness:**
   - Ensure the design adapts seamlessly across mobile and desktop devices.
 
+## Screenshots
+### 📌 Homepage View
+![Alt text](./assets/SS-1.png)
+
 ## Project Structure
 - **index.html:**  
   - Main HTML file containing the layout and structure.
