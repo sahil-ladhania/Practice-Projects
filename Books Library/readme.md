@@ -24,8 +24,10 @@
   - Clicking a book opens more information in a new tab via `infoLink`.
 
 ## Screenshots
-### 📌 Home Page
+### 📌 Grid View
 ![Grid View](./assets/SS-1.png)
+### 📌 List View
+![List View](./assets/SS-2.png)
 
 ## API Endpoint & Documentation
 - **API Endpoint:**  
@@ -53,4 +55,4 @@
 - **Hosting Platform:**  
   - Used Vercel for deployment.
 - **Live Link of the Product:**  
-  [Try it now!]()
+  [Try it now!](https://booksy-kappa.vercel.app/)
