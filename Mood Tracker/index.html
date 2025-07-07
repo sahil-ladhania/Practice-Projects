@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mood Tracker App</title>
+  <!-- Google Fonts for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Mood Tracker</h1>
+      <p>Track your mood and visualize your emotional journey</p>
+    </header>
+    
+    <main class="app-main">
+      <section class="mood-selection">
+        <h2>Select Your Mood</h2>
+        <div class="mood-buttons">
+          <button class="mood-btn" data-mood="happy" aria-label="Happy">
+            <span class="emoji">😄</span>
+          </button>
+          <button class="mood-btn" data-mood="sad" aria-label="Sad">
+            <span class="emoji">😞</span>
+          </button>
+          <button class="mood-btn" data-mood="neutral" aria-label="Neutral">
+            <span class="emoji">😐</span>
+          </button>
+          <button class="mood-btn" data-mood="excited" aria-label="Excited">
+            <span class="emoji">😃</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="timeline-view">
+        <h2>Mood Timeline</h2>
+        <div class="timeline-options">
+          <button class="timeline-btn active" data-view="today">Todays Mood</button>
+        </div>
+        <div class="timeline-content">
+          <ul class="timeline-list">
+            <!-- <li class="list-item">Your mood logs will appear here...</li> -->
+          </ul>
+        </div>
+      </section>
+    </main>
+    
+    <footer class="app-footer">
+      <p>&copy; 2025 Mood Tracker. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- JS Code -->
+  <script src="script.js"></script>
+</body>
+</html>
