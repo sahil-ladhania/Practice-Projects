@@ -1,0 +1,15 @@
+export const moodGradients: Record<string, string> = {
+    Happy: "from-yellow-400 via-orange-400 to-pink-400",
+    Sad: "from-gray-700 via-slate-800 to-black",
+    Chill: "from-teal-300 via-blue-400 to-indigo-500",
+    Energetic: "from-red-500 via-orange-500 to-yellow-300",
+    Focus: "from-cyan-500 via-blue-500 to-indigo-600",
+    Romantic: "from-pink-400 via-rose-500 to-red-400",
+    Party: "from-purple-500 via-pink-500 to-red-500",
+    Workout: "from-rose-600 via-orange-600 to-yellow-500",
+    Sleep: "from-slate-700 via-gray-800 to-black",
+    Travel: "from-amber-300 via-orange-400 to-emerald-500",
+    Rainy: "from-blue-500 via-indigo-600 to-gray-600",
+    Nostalgic: "from-yellow-100 via-orange-300 to-rose-200",
+    Dark: "from-zinc-800 via-zinc-900 to-black",
+};
