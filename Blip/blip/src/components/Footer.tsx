@@ -15,7 +15,6 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <Link to="/markets" className="hover:text-foreground transition-colors">Markets</Link>
             <Link to="/watchlist" className="hover:text-foreground transition-colors">Watchlist</Link>
-            <Link to="/about" className="hover:text-foreground transition-colors">About</Link>
           </div>
         </div>
 

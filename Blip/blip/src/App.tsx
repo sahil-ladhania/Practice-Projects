@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Details from './pages/Details'
 import Comparison from './pages/Comparison'
 import Watchlist from './pages/Watchlist'
+import Markets from './pages/Markets'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path='/details' element={<Details />} />
+          <Route path='/markets' element={<Markets />} />
           <Route path='/comparison' element={<Comparison />} />
           <Route path='/watchlist' element={<Watchlist />} />
         </Route>
