@@ -24,7 +24,7 @@ export const Navbar = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search"
+              placeholder="Search for jobs"
               className="pl-9 w-[200px] sm:w-[250px] md:w-[300px] bg-muted/20"
             />
           </div>
