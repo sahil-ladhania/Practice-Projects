@@ -9,8 +9,8 @@ const router = Router();
 
 router.use('/auth' , authRoutes);
 router.use('/books' , bookRoutes);
-router.use('/books' , reviewsRoutes);
 router.use('/orders' , orderRoutes);
 router.use('/payments' , paymentRoutes);
+router.use('/books' , reviewsRoutes);
 
 export default router;
