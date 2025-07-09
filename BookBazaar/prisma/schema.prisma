@@ -10,6 +10,34 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// model User{
+
+// }
+
+// model ApiKey{
+
+// }
+
+// model Book{
+
+// }
+
+// model Review{
+
+// }
+
+// model Order{
+
+// }
+
+// model CartItem{
+
+// }
+
+// model Payment{
+
+// }
