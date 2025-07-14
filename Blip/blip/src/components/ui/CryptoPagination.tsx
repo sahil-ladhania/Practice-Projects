@@ -1,56 +1,53 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import type React from 'react';
 
-export const CryptoPagination = () => {
+type CryptoPaginationProps = {
+  currentPageCount : number;
+  setCurrentPageCount : React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const CryptoPagination = ({currentPageCount , setCurrentPageCount} : CryptoPaginationProps) => {
+  // Handler Functions
+  const handlePrevious = async() => {
+    try {
+      if(currentPageCount > 1){
+        setCurrentPageCount(currentPageCount - 1);
+      };
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+  const handleNext = async() => {
+    try {
+      if(currentPageCount < 250){
+        setCurrentPageCount(currentPageCount + 1);
+      };
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="mt-6">
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious onClick={handlePrevious} href="#" />
           </PaginationItem>
-          <PaginationItem>
             <PaginationLink href="#" isActive>
-              1
+              {currentPageCount}
             </PaginationLink>
-          </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#">
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">
-              3
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">
-              4
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">
-              5
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">
-              10
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
+            <PaginationNext onClick={handleNext} href="#" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
