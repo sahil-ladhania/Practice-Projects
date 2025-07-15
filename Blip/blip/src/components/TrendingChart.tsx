@@ -7,6 +7,8 @@ import {
     Tooltip,
   } from "recharts";
   import { Card } from "@/components/ui/card";
+import { useEffect } from "react";
+import { getTrendingCoin } from "@/services/getTrendingCoin";
   
   const data = [
     { name: "Mon", price: 27000 },
@@ -19,6 +21,16 @@ import {
   ];
   
   export function TrendingChart() {
+
+    // useEffect
+    useEffect(() => {
+      const getTrendingCoinData = async() => {
+        const data = await getTrendingCoin();
+        console.log(data.coins[0]);
+      };
+      getTrendingCoinData();
+    }, []);
+
     return (
       <Card className="p-4">
         <h2 className="text-sm text-muted-foreground mb-2">Trending: Bitcoin</h2>

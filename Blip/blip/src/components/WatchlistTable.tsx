@@ -3,76 +3,77 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Trash2 } from 'lucide-react';
-
-interface CryptoData {
-  rank: number;
-  name: string;
-  price: string;
-  change24h: string;
-  marketCap: string;
-  isPositive: boolean;
-}
-
-const mockCryptoData: CryptoData[] = [
-  { rank: 1, name: 'Bitcoin', price: '$45,000', change24h: '+2.5%', marketCap: '$850B', isPositive: true },
-  { rank: 2, name: 'Ethereum', price: '$3,200', change24h: '+3.1%', marketCap: '$380B', isPositive: true },
-  { rank: 3, name: 'Cardano', price: '$1.20', change24h: '-1.8%', marketCap: '$40B', isPositive: false },
-  { rank: 4, name: 'Binance Coin', price: '$400', change24h: '+1.5%', marketCap: '$60B', isPositive: true },
-  { rank: 5, name: 'Solana', price: '$150', change24h: '+4.2%', marketCap: '$65B', isPositive: true },
-  { rank: 6, name: 'XRP', price: '$0.85', change24h: '-0.5%', marketCap: '$40B', isPositive: false },
-  { rank: 7, name: 'Polkadot', price: '$20', change24h: '+2.0%', marketCap: '$20B', isPositive: true },
-  { rank: 8, name: 'Dogecoin', price: '$0.15', change24h: '+1.0%', marketCap: '$20B', isPositive: true },
-  { rank: 9, name: 'Avalanche', price: '$80', change24h: '+3.5%', marketCap: '$15B', isPositive: true },
-  { rank: 10, name: 'Litecoin', price: '$150', change24h: '+2.8%', marketCap: '$10B', isPositive: true },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '@/store/store';
+import { removeCoin } from '@/store/slices/watchlistSlice';
+import type { Coin } from '@/types/coin';
+import { formatMarketCap } from '@/utils/formatMarketCap';
 
 export const WatchlistTable = () => {
+  // useSelector & useDispatch
+  const dispatch = useDispatch<AppDispatch>();
+  const coins = useSelector((state: RootState) => state.watchlist.coins);
+
+  // Handler Functions
+  const handleRemoveCoin = (coin: Coin) => {
+    dispatch(removeCoin(coin.id));
+  }
+
   return (
-    <Card className="bg-card border-border">
-      <Table>
-        <TableHeader>
-          <TableRow className="border-border">
-            <TableHead className="w-12 text-muted-foreground">#</TableHead>
-            <TableHead className="text-muted-foreground">Coin</TableHead>
-            <TableHead className="text-muted-foreground">Price</TableHead>
-            <TableHead className="text-muted-foreground">24h %</TableHead>
-            <TableHead className="text-muted-foreground">Market Cap</TableHead>
-            <TableHead className="text-muted-foreground"></TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {mockCryptoData.map((crypto) => (
-            <TableRow key={crypto.rank} className="hover:bg-muted/50 border-border">
-              <TableCell className="font-medium text-muted-foreground">
-                {crypto.rank}
-              </TableCell>
-              <TableCell className="font-medium">
-                {crypto.name}
-              </TableCell>
-              <TableCell className="font-medium">
-                {crypto.price}
-              </TableCell>
-              <TableCell>
-                <Badge 
-                  variant={crypto.isPositive ? "default" : "destructive"}
-                  className={crypto.isPositive ? "bg-green-500/10 text-green-500 hover:bg-green-500/20" : ""}
-                >
-                  {crypto.change24h}
-                </Badge>
-              </TableCell>
-              <TableCell className="font-medium">
-                {crypto.marketCap}
-              </TableCell>
-              <TableCell>
-                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-                    <Trash2 size={16} />
-                  Remove
-                </Button>
-              </TableCell>
+    (coins.length > 0) ?
+      <Card className="bg-card border-border">
+        <Table>
+          <TableHeader>
+            <TableRow className="border-border">
+              <TableHead className="w-12 text-muted-foreground">#</TableHead>
+              <TableHead className="text-muted-foreground">Coin</TableHead>
+              <TableHead className="text-muted-foreground">Price</TableHead>
+              <TableHead className="text-muted-foreground">24h %</TableHead>
+              <TableHead className="text-muted-foreground">Market Cap</TableHead>
+              <TableHead className="text-muted-foreground"></TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Card>
+          </TableHeader>
+          <TableBody>
+            {coins?.map((coin) => (
+              <TableRow key={coin.id} className="hover:bg-muted/50 border-border">
+                <TableCell className="font-medium text-muted-foreground">
+                  {coin.market_cap_rank}
+                </TableCell>
+                <TableCell className="font-medium">
+                  {coin.name}
+                </TableCell>
+                <TableCell className="font-medium">
+                  {coin.current_price}
+                </TableCell>
+                <TableCell>
+                  <Badge 
+                    variant={(coin.market_cap_change_percentage_24h > 0) ? "success" : "destructive"}
+                    className={(coin.market_cap_change_percentage_24h > 0) ? "bg-green-500/10 text-green-500 hover:bg-green-500/20" : ""}
+                  >
+                    {coin.market_cap_change_percentage_24h}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Badge className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20">
+                    {formatMarketCap(coin.market_cap)}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <Button onClick={() => handleRemoveCoin(coin)} variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+                      <Trash2 size={16} />
+                    Remove
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
+      :
+      <div className="flex flex-col items-center justify-center h-64 text-center text-muted-foreground">
+        <Trash2 size={32} className="mb-2" />
+        <p className="text-lg font-medium">No coins in your watchlist</p>
+        <p className="text-sm">Start bookmarking your favorite coins to see them here.</p>
+      </div>
   );
 };
