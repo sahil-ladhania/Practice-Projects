@@ -1,45 +1,36 @@
 import { PriceChart } from "@/components/PriceChart";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
-const mockData = {
-  name: "Bitcoin",
-  symbol: "BTC",
-  price: "$29,450",
-  percentChange: "+2.3%",
-  marketCap: "$570.23B",
-  volume24h: "$12.34B",
-  circulatingSupply: "19.45M BTC",
-  totalSupply: "21M BTC",
-  maxSupply: "21M BTC",
-  fdv: "$618.45B",
-  ath: "$68,789 (Nov 10, 2021)",
-  atl: "$0.00 (Jul 6, 2010)",
-};
+import type { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Details() {
+  // useSelector and useDispatch
+  const currentCoinDetails = useSelector((state: RootState) => state.coinDetails.currentCoinDetails);
+  
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-8">
       
       {/* Breadcrumb */}
       <div className="text-sm text-muted-foreground">
-        Markets / <span className="text-foreground font-medium">{mockData.name}</span>
+        <Link to='/markets' className="mr-2 text-sm underline">Markets</Link>
+        / 
+        <span className="text-foreground font-medium ml-2">{currentCoinDetails?.name}</span>
       </div>
 
       {/* Title + Bookmark */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-semibold">{mockData.name}</h1>
-          <p className="text-muted-foreground text-sm">{mockData.symbol}</p>
+          <h1 className="text-3xl font-semibold">{currentCoinDetails?.name}</h1>
+          <p className="text-muted-foreground text-sm">{currentCoinDetails?.symbol?.toUpperCase()}</p>
         </div>
-        <Button variant="outline">Bookmark</Button>
       </div>
 
       {/* Price + Change */}
       <div className="space-y-2">
         <p className="text-sm text-muted-foreground">7D</p>
-        <p className="text-3xl font-bold">{mockData.price}</p>
-        <p className="text-green-600 text-sm">Last 7 Days {mockData.percentChange}</p>
+        <p className="text-3xl font-bold">{currentCoinDetails?.market_data?.current_price?.usd.toLocaleString()}</p>
+        <p className="text-green-600 text-sm">Last 7 Days {currentCoinDetails?.market_data?.price_change_percentage_7d?.toFixed(2)}</p>
       </div>
 
       {/* Chart Placeholder */}
@@ -55,14 +46,14 @@ export default function Details() {
         <Separator />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-          <Stat label="Market Cap" value={mockData.marketCap} />
-          <Stat label="Volume (24h)" value={mockData.volume24h} />
-          <Stat label="Circulating Supply" value={mockData.circulatingSupply} />
-          <Stat label="Total Supply" value={mockData.totalSupply} />
-          <Stat label="Max Supply" value={mockData.maxSupply} />
-          <Stat label="Fully Diluted Valuation" value={mockData.fdv} />
-          <Stat label="All-Time High" value={mockData.ath} />
-          <Stat label="All-Time Low" value={mockData.atl} />
+          <Stat label="Market Cap" value={`$${currentCoinDetails?.market_data?.market_cap?.usd.toLocaleString()}`} />
+          <Stat label="Volume (24h)" value={`$${currentCoinDetails?.market_data?.total_volume?.usd.toLocaleString()}`} />
+          <Stat label="Circulating Supply" value={`${currentCoinDetails?.market_data?.circulating_supply?.toLocaleString()} ${currentCoinDetails?.symbol?.toUpperCase()}`} />
+          <Stat label="Total Supply" value={`${currentCoinDetails?.market_data?.total_supply?.toLocaleString()} ${currentCoinDetails?.symbol?.toUpperCase()}`} />
+          <Stat label="Max Supply" value={`${currentCoinDetails?.market_data?.max_supply?.toLocaleString()} ${currentCoinDetails?.symbol?.toUpperCase()}`} />
+          <Stat label="Fully Diluted Valuation" value={`$${currentCoinDetails?.market_data?.fully_diluted_valuation?.usd?.toLocaleString()}`} />
+          <Stat label="All-Time High" value={`$${currentCoinDetails?.market_data?.ath?.usd?.toLocaleString()} (${new Date(currentCoinDetails?.market_data?.ath_date?.usd).toDateString()})`} />
+          <Stat label="All-Time Low" value={`$${currentCoinDetails?.market_data?.atl?.usd?.toLocaleString()} (${new Date(currentCoinDetails?.market_data?.atl_date?.usd).toDateString()})`} />
         </div>
       </div>
     </div>

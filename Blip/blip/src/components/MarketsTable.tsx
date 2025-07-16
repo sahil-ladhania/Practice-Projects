@@ -11,8 +11,37 @@ import { Badge } from "@/components/ui/badge";
 import type { Coin } from "@/types/coin";
 import LoaderComponent from "./LoaderComponent";
 import { formatMarketCap } from "@/utils/formatMarketCap";
+import { getCoinData } from "@/services/getCoinDetails";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCurrentCoinDetails, setCurrentCoinDetails } from "@/store/slices/coinDetailsSlice";
+import type { RootState } from "@/store/store";
 
 export function DataTable({ marketData, isLoading }) {
+  // useNavigate , useDispatch , useSelector
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentCoinDetails = useSelector((state: RootState) => state.coinDetails.currentCoinDetails);
+
+  // Handler Functions
+  const handleViewDetailsOfCoin = async(coinId: string) => {
+    try {
+      console.log("Hi");
+      const coinData = await getCoinData(coinId);
+      navigate(`/details/${coinId}`);
+      if(!currentCoinDetails){
+        dispatch(setCurrentCoinDetails(coinData));  
+      }
+      else{
+        dispatch(clearCurrentCoinDetails());
+        dispatch(setCurrentCoinDetails(coinData));
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="rounded-md border overflow-x-auto">
       {
@@ -62,11 +91,9 @@ export function DataTable({ marketData, isLoading }) {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-center">
-                      <a href={`/details`}>
-                        <Button size="sm" variant="outline">
-                          View
-                        </Button>
-                      </a>
+                      <Button onClick={() => handleViewDetailsOfCoin(coin.id)} size="sm" variant="outline">
+                        View
+                      </Button>
                     </TableCell>
                     <TableCell className="text-center">
                       <Button size="sm" variant="outline">
