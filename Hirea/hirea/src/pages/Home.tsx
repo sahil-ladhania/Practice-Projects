@@ -1,8 +1,30 @@
 import { JobFilters } from "@/components/JobFilters"
 import { JobCard } from "@/components/JobCard"
 import { JobPagination } from "@/components/Pagination"
+import { useEffect } from "react"
+import { getAllJobs } from "@/services/getAllJobs";
+import { useDispatch } from "react-redux";
+import { setJobs } from "@/store/slices/jobSlice";
 
 export default function Home() {
+  // useDispatch
+  const dispatch = useDispatch();
+
+  // useEffect
+  useEffect(() => {
+    const getJobs = async() => {
+      try {
+        const data = await getAllJobs();
+        console.log(data);
+        dispatch(setJobs(data));
+      } 
+      catch (error) {
+        console.log(error);
+      }
+    };
+    getJobs();
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto px-4 space-y-8">
       <JobFilters />
